@@ -63,6 +63,7 @@ footer .title {
     align-self: flex-start;
     top: 0;
 }
+
 .sticky-bottom {
     position: -webkit-sticky !important;
     position: sticky !important;
@@ -153,6 +154,7 @@ footer .title {
 .margin-left-5 {
     margin-left: 5px !important;
 }
+
 .margin-right-10 {
     margin-right: 10px !important;
 }
@@ -168,12 +170,50 @@ footer .title {
 .margin-bottom-5 {
     margin-bottom: 5px !important;
 }
+
 .margin-top-10 {
     margin-top: 10px !important;
 }
 
 .margin-bottom-10 {
     margin-bottom: 10px !important;
+}
+
+.padding-10 {
+    padding: 10px !important;
+}
+
+.padding-20 {
+    padding: 20px !important;
+}
+
+.padding-30 {
+    padding: 30px !important;
+}
+
+.padding-vertical-30 {
+    margin-top: 30px !important;
+    margin-bottom: 30px !important;
+}
+
+.width-5 {
+    width: 5%;
+}
+
+.width-25 {
+    width: 25%;
+}
+
+.width-50 {
+    width: 50%;
+}
+
+.width-75 {
+    width: 75%;
+}
+
+.width-100 {
+    width: 100%;
 }
 
 .right {
@@ -187,8 +227,17 @@ a.button {
 .color-white {
     background-color: #ffffff !important;
 }
+
 .shadow {
     box-shadow: 0px 0px 4px #ebebeb, 0px 0px 4px #ebebeb, 0px 0px 4px #fdfbfb;
+}
+
+.shadow-8 {
+    box-shadow: 0px 0px 8px #ebebeb, 0px 0px 8px #ebebeb, 0px 0px 8px #fdfbfb;
+}
+
+.shadow-12 {
+    box-shadow: 0px 0px 12px #ebebeb, 0px 0px 12px #ebebeb, 0px 0px 12px #fdfbfb;
 }
 
 .button {
@@ -208,4 +257,51 @@ a.button {
 .primary-color {
     background-color: #231557 !important;
     color: #ffffff;
+}
+
+.active-button {
+    background-color: #44107A !important;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.field input {
+    width: 100%;
+    padding: 0.5em 0 0.5em 0.5em;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 0.15rem;
+}
+
+.field input:focus {
+    border-color: #453376;
+    box-shadow: 0px 1px 16px #ced4da;
+}
+
+.field label {
+    display: block;
+    margin: 0 0 .28571429rem 0;
+    color: rgba(0, 0, 0, .87);
+    font-size: .92857143em;
+    font-weight: 700;
+    text-transform: none;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-left {
+    text-align: left;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.border-rounded {
+    border-radius: 0.3em;
 }
