@@ -45,7 +45,7 @@ footer, footer {
     background-color: #fff;
     z-index: 999;
     border-bottom: 1px solid #ebebeb;
-    box-shadow: 0px 0px 6px #ebebeb;
+    box-shadow: 0 0 6px #ebebeb;
     padding: 1em;
 }
 
@@ -229,15 +229,15 @@ a.button {
 }
 
 .shadow {
-    box-shadow: 0px 0px 4px #ebebeb, 0px 0px 4px #ebebeb, 0px 0px 4px #fdfbfb;
+    box-shadow: 0 0 4px #ebebeb, 0 0 4px #ebebeb, 0 0 4px #fdfbfb;
 }
 
 .shadow-8 {
-    box-shadow: 0px 0px 8px #ebebeb, 0px 0px 8px #ebebeb, 0px 0px 8px #fdfbfb;
+    box-shadow: 0 0 8px #ebebeb, 0 0 8px #ebebeb, 0 0 8px #fdfbfb;
 }
 
 .shadow-12 {
-    box-shadow: 0px 0px 12px #ebebeb, 0px 0px 12px #ebebeb, 0px 0px 12px #fdfbfb;
+    box-shadow: 0 0 12px #ebebeb, 0 0 12px #ebebeb, 0 0 12px #fdfbfb;
 }
 
 .button {
@@ -252,6 +252,7 @@ a.button {
     border-radius: 0.2rem;
     text-align: center;
     display: table-cell;
+    font-family: 'Nunito', sans-serif;
 }
 
 .primary-color {
@@ -274,11 +275,20 @@ a.button {
     background-color: #fff;
     border: 1px solid #ced4da;
     border-radius: 0.15rem;
+    font-family: 'Nunito', sans-serif;
+}
+.field select {
+    width: 100%;
+    background: #FFFFFF;
+    border: 1px solid rgba(34, 36, 38, 0.15);
+    border-radius: 0.15rem;
+    padding: 0.8em 0 0.8em 0.8em;
+    font-family: 'Nunito', sans-serif;
 }
 
-.field input:focus {
+.field input:focus, .field select:focus {
     border-color: #453376;
-    box-shadow: 0px 1px 16px #ced4da;
+    box-shadow: 0 1px 16px #ced4da;
 }
 
 .field label {
