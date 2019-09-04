@@ -1,0 +1,37 @@
+.share-article .field input {
+    width: 99%;
+    background-color: rgba(0, 0, 0, .05) !important;
+}
+
+.share-article form textarea {
+    width: 99%;
+    padding: 0.5em 0 0.5em 0.5em;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    border: 1px solid #ced4da;
+    border-radius: 0.15rem;
+    font-family: 'Nunito', sans-serif;
+    background-color: rgba(0, 0, 0, .05) !important;
+}
+
+.share-article .field input:focus, .share-article .field textarea:focus {
+    background-color: rgba(255, 255, 255, 1) !important;
+    font-weight: 500;
+    -webkit-transition: 0.1s ease;
+    transition: 0.1s ease;
+}
+
+.share-article .field textarea:focus {
+    border-color: #453376;
+    box-shadow: 0 1px 16px #ced4da;
+}
+
+.share-article .page-title {
+    /*text-shadow: 0 0 10px rgba(0, 0, 0, .2);*/
+    font-size: 1.8vmax;
+    background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 1.5rem 0;
+}
