@@ -1,9 +1,11 @@
-.share-article .field input {
+.share-article .field input,
+.edit-article .field input {
     width: 99%;
     background-color: rgba(0, 0, 0, .05) !important;
 }
 
-.share-article form textarea {
+.share-article form textarea ,
+.edit-article form textarea {
     width: 99%;
     padding: 0.5em 0 0.5em 0.5em;
     font-size: 1rem;
@@ -13,16 +15,21 @@
     border-radius: 0.15rem;
     font-family: 'Nunito', sans-serif;
     background-color: rgba(0, 0, 0, .05) !important;
+    text-align: justify-all;
 }
 
-.share-article .field input:focus, .share-article .field textarea:focus {
+.share-article .field input:focus,
+.edit-article .field input:focus,
+.share-article .field textarea:focus,
+.edit-article form textarea:focus {
     background-color: rgba(255, 255, 255, 1) !important;
     font-weight: 500;
     -webkit-transition: 0.1s ease;
     transition: 0.1s ease;
 }
 
-.share-article .field textarea:focus {
+.share-article .field textarea:focus,
+.edit-article form textarea:focus {
     border-color: #453376;
     box-shadow: 0 1px 16px #ced4da;
 }
@@ -34,4 +41,11 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin: 1.5rem 0;
+}
+
+.edit-article form .field img {
+    margin: 1rem 0;
+    max-width: 12vmax;
+    max-height: 12vmax;
+    border-radius: .3em;
 }
