@@ -4,7 +4,7 @@
     background-color: rgba(0, 0, 0, .05) !important;
 }
 
-.share-article form textarea ,
+.share-article form textarea,
 .edit-article form textarea {
     width: 99%;
     padding: 0.5em 0 0.5em 0.5em;
@@ -79,10 +79,11 @@
 }
 
 .available-articles article .footer {
-    border-top: 1px solid rgba(0,0,0,.05);
+    border-top: 1px solid rgba(0, 0, 0, .05);
     padding: 0 .3em;
     height: 40px;
 }
+
 .available-articles article .footer .article-info {
     font-size: small;
     padding-top: .25rem;
@@ -99,39 +100,96 @@
     text-align: center;
     vertical-align: middle;
 }
+
 .available-articles article .footer .menu i {
     font-weight: 300;
 }
 
 .read-article main article {
-    background-color: rgba(0,0,0,.01);
+    background-color: rgba(0, 0, 0, .01);
     padding: 0.11rem;
     word-wrap: break-spaces;
 }
+
 .read-article main article header {
-    background-color: rgba(0,0,0,0.02);
+    background-color: rgba(0, 0, 0, 0.02);
     margin: 0 0 0 0;
     border-radius: .2em .2em 0 0;
     padding: 1.5em 1em;
     font-size: .9rem;
 }
+
 .read-article main article header .author span {
     font-weight: 600;
     font-size: .95rem;
 }
+
 .read-article main article img {
     max-width: 100%;
     max-height: 60vh;
     border-radius: 0 0 .2em .2em;
 }
+
 .read-article main article h1 {
     text-align: center;
     padding: 0 0;
     margin: .15rem 0;
 }
+
 .read-article main article p {
     text-align: justify;
 }
+
 .read-article main .info-holder {
     top: 15em;
+}
+
+.read-article main .comment-holder {
+    background-color: rgba(0, 0, 0, .004);
+    height: auto;
+    padding: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+
+.read-article main .comment-holder .field {
+    width: 80%;
+}
+
+.read-article main .comment-holder button {
+    width: 18.2%;
+    height: 2.55rem;
+}
+
+.read-article main .comment-holder .comments {
+    max-height: 20rem;
+    width: 100%;
+    padding-top: 1em;
+    overflow-y: auto;
+}
+
+.read-article main .comment-holder .comments .item {
+    background-color: rgba(0,0,0,.01);
+    padding: .8em;
+}
+
+.read-article main .comment-holder .comments .item:first-child {
+    border-radius: .3em .3em 0 0;
+}
+
+.read-article main .comment-holder .comments .item:last-child {
+    border-radius: 0 0 .3em .3em;
+}
+
+.read-article main .comment-holder .comments .item p {
+    margin: 0 0;
+    text-align: left;
+    word-wrap: break-spaces;
+}
+
+.read-article main .comment-holder .comments .item b {
+    margin: 0 0;
+}
+
+.budge {
+    font-weight: 500;
 }
