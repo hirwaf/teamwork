@@ -13,9 +13,9 @@
         <div class="flex flex-row right space-evenly">
         </div>
     </footer>
-    <main class="flex flex-row space-between color-white shadow padding-30">
+    <main class="flex flex-row color-white space-between shadow padding-30">
         <div class="width-5 sticky-top info-holder">
-            &nbsp;
+            <a href="#comments" class="button">Comments <span class="budge">2</span></a>
         </div>
         <article class="flex flex-column width-75">
             <header class="flex flex-row space-between">
@@ -48,7 +48,25 @@
                 Ultrices vitae auctor eu augue ut lectus.
             </p>
         </article>
-        <div>&nbsp;</div>
+        <div class="flex flex-row comment-holder space-between" id="comments">
+            <form action="" class="flex flex-row space-between width-100">
+                <div class="field">
+                    <input type="text" name="comment" id="“comment"
+                           placeholder="Comment ...">
+                </div>
+                <button type="submit" class="button primary-color">Comment</button>
+            </form>
+            <div class="comments flex flex-row">
+                <div class="item margin-bottom-10">
+                    <b>Nevaeh Wills</b>
+                    <p>Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus</p>
+                </div>
+                <div class="item margin-bottom-10">
+                    <b>Ray Sierra</b>
+                    <p>Venenatis a condimentum vitae sapien pellentesque habitant morbi tristique senectus et netus</p>
+                </div>
+            </div>
+        </div>
     </main>
     <footer class="flex flex-row content-center">
         <div class="">© 2019 All Right Reserved to Teamwork</div>
