@@ -45,7 +45,7 @@ body {
     }
 }
 
-footer, footer {
+header, footer {
     background-color: #fff;
     z-index: 999;
     border-bottom: 1px solid #ebebeb;
@@ -53,6 +53,7 @@ footer, footer {
     padding: 1em;
 }
 
+header .title,
 footer .title {
     font-size: 1.9em;
     font-weight: 700;
