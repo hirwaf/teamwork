@@ -211,3 +211,7 @@ header .user-menus a:last-child {
 .budge {
     font-weight: 500;
 }
+
+.my-articles article .footer .delete-article {
+    background-color: rgba(255, 0, 0, .5);
+}
