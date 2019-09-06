@@ -1,3 +1,12 @@
+header .user-menus a {
+    margin-right: .2rem;
+    font-weight: 600;
+}
+
+header .user-menus a:last-child {
+    margin-right: 0;
+}
+
 .share-article .field input,
 .edit-article .field input {
     width: 99%;
@@ -51,7 +60,8 @@
     border-radius: .3em;
 }
 
-.available-articles article {
+.available-articles article,
+.my-articles article {
     border-radius: .3em;
     width: 20%;
     padding: 0 0;
@@ -60,12 +70,14 @@
     margin-right: .2em;
 }
 
-.available-articles article img {
+.available-articles article img,
+.my-articles article img {
     max-width: 100%;
     border-radius: .2em;
 }
 
-.available-articles article p {
+.available-articles article p,
+.my-articles article p {
     text-align: left;
     font-family: 'Nunito', sans-serif;
     margin-top: 0;
@@ -73,27 +85,32 @@
     font-weight: 700;
 }
 
-.available-articles article .body {
+.available-articles article .body,
+.my-articles article .body {
     padding: .5rem;
     margin-bottom: 0;
 }
 
-.available-articles article .footer {
+.available-articles article .footer,
+.my-articles article .footer {
     border-top: 1px solid rgba(0, 0, 0, .05);
     padding: 0 .3em;
     height: 40px;
 }
 
-.available-articles article .footer .article-info {
+.available-articles article .footer .article-info,
+.my-articles article .footer .article-info {
     font-size: small;
     padding-top: .25rem;
 }
 
-.available-articles article .footer .article-info span {
+.available-articles article .footer .article-info span,
+.my-articles article .footer .article-info span {
     font-size: .7rem;
 }
 
-.available-articles article .footer .menu {
+.available-articles article .footer .menu,
+.my-articles article .footer .menu {
     padding: .6rem .8rem;
     margin-top: .1em;
     margin-bottom: .1em;
@@ -101,7 +118,8 @@
     vertical-align: middle;
 }
 
-.available-articles article .footer .menu i {
+.available-articles article .footer .menu i,
+.my-articles article .footer .menu i {
     font-weight: 300;
 }
 
@@ -168,7 +186,7 @@
 }
 
 .read-article main .comment-holder .comments .item {
-    background-color: rgba(0,0,0,.01);
+    background-color: rgba(0, 0, 0, .01);
     padding: .8em;
 }
 
