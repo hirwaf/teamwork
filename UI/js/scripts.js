@@ -9,3 +9,7 @@ const userLogin = () => {
 const userRegister = () => {
     window.location = "../pages/articles.html";
 };
+
+const readArticle = () => {
+  window.location = "../pages/readArticle.html";
+};
