@@ -1,0 +1,30 @@
+{
+    "env": {
+        "browser": true,
+        "commonjs": true,
+        "es6": true,
+        "node": true
+    },
+    "extends": [
+        "airbnb-base"
+    ],
+    "globals": {
+        "Atomics": "readonly",
+        "SharedArrayBuffer": "readonly"
+    },
+    "parserOptions": {
+        "ecmaVersion": 2018,
+        "sourceType": "module"
+    },
+    "rules": {
+        "no-var": "error",
+        "prefer-const": "warn",
+        "eol-last": "off",
+        "key-spacing": "warn",
+        "no-unused-vars": "off",
+        "no-console": "off",
+        "no-undef": "off",
+        "import/no-extraneous-dependencies": "off",
+        "no-empty": "off"
+    }
+}
