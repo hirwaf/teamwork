@@ -25,6 +25,8 @@
         "no-console": "off",
         "no-undef": "off",
         "import/no-extraneous-dependencies": "off",
-        "no-empty": "off"
+        "no-empty": "off",
+        "no-eq-null": "off",
+        "no-plusplus": "off"
     }
 }
