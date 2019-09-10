@@ -9,5 +9,6 @@ routers.route('/').get((request, response) => response.status(400).send({
 }));
 
 routers.route('/auth/signup/').post((request, response) => UserController.UserSignUp(request, response));
+routers.route('/auth/signin/').post((request, response) => UserController.UserLogin(request, response));
 
 export default routers;
