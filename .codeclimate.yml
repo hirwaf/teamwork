@@ -1,6 +1,6 @@
 plugins:
   duplication:
-    enabled: true
+    enabled: false
     checks:
       Similar code:
         enabled: false
