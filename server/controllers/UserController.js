@@ -4,14 +4,7 @@ import Helpers from '../Helpers';
 const UserController = {
   UserSignUp(request, response) {
     const {
-      firstName,
-      lastName,
-      email,
-      password,
-      gender,
-      jobRole,
-      department,
-      address,
+      firstName, lastName, email, password, gender, jobRole, department, address,
     } = request.body;
     const schema = joi.object()
       .keys({
@@ -64,7 +57,7 @@ const UserController = {
             department,
             address,
             user_id: 5,
-            password: hashedPassword
+            password: hashedPassword,
           },
         });
     } else {
