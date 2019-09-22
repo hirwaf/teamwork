@@ -32,8 +32,14 @@ describe('Articles endpoint tests', () => {
       .post('/api/v1/articles')
       .send(data)
       .end((request, response) => {
-        response.body.should.have.property('status').to.be.oneOf([401, 400]);
-        response.body.should.have.property('message').to.be.oneOf(['Unauthorized, No token provided', 'Token expired', 'Invalid token']);
+        response.body.should.have.property('status')
+          .to
+          .be
+          .oneOf([401, 400]);
+        response.body.should.have.property('message')
+          .to
+          .be
+          .oneOf(['Unauthorized, No token provided', 'Token expired', 'Invalid token']);
       });
     done();
   });
@@ -60,14 +66,52 @@ describe('Articles endpoint tests', () => {
       .send(data)
       .set('token', token)
       .end((request, response) => {
-        response.body.should.have.property('status').equal(201);
-        response.body.should.have.property('message').equal('Article successfully created');
+        response.body.should.have.property('status')
+          .equal(201);
+        response.body.should.have.property('message')
+          .equal('Article successfully created');
         response.body.should.have.property('data');
         response.body.data.should.be.an('Object');
         response.body.data.should.have.property('createdOn');
-        response.body.data.should.have.property('title').equal(data.title);
-        response.body.data.should.have.property('image').equal(data.image);
-        response.body.data.should.have.property('article').equal(data.article);
+        response.body.data.should.have.property('title')
+          .equal(data.title);
+        response.body.data.should.have.property('image')
+          .equal(data.image);
+        response.body.data.should.have.property('article')
+          .equal(data.article);
+      });
+    done();
+  });
+
+  it('should not found article', (done) => {
+    const articleID = 1;
+    chai.request(server)
+      .get(`/api/v1/articles/${articleID}`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status').equal(404);
+        response.body.should.have.property('message').equal('Article not found !');
+      });
+    done();
+  });
+
+  it('should found article', (done) => {
+    const articleID = 5;
+    chai.request(server)
+      .get(`/api/v1/articles/${articleID}`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status').equal(200);
+        response.body.should.have.property('message').equal('Article found !');
+        response.body.should.have.property('data');
+        response.body.data.should.be.an('Object');
+        response.body.data.should.have.property('id');
+        response.body.data.should.have.property('createdOn');
+        response.body.data.should.have.property('title');
+        response.body.data.should.have.property('article');
+        response.body.data.should.have.property('image');
+        response.body.data.should.have.property('authorId');
+        response.body.data.should.have.property('comments');
       });
     done();
   });
