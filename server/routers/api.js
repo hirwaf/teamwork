@@ -16,5 +16,6 @@ routers.route('/auth/signin/').post((request, response) => UserController.UserLo
 // Articles APIs
 
 routers.route('/articles').post(Auth.verifyToken, ArticlesController.store);
+routers.route('/articles/:articleId').get(Auth.verifyToken, ArticlesController.findOne);
 
 export default routers;
