@@ -115,4 +115,16 @@ describe('Articles endpoint tests', () => {
       });
     done();
   });
+
+  it('should get feeds', (done) => {
+    chai.request(server)
+      .get('/api/v1/feeds')
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status').equal(200);
+        response.body.should.have.property('message').equal('Success');
+        response.body.should.have.property('data');
+      });
+    done();
+  });
 });

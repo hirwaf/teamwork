@@ -14,7 +14,7 @@ routers.route('/auth/signup/').post((request, response) => UserController.UserSi
 routers.route('/auth/signin/').post((request, response) => UserController.UserLogin(request, response));
 
 // Articles APIs
-
+routers.route('/feeds').get(Auth.verifyToken, ArticlesController.findAll);
 routers.route('/articles').post(Auth.verifyToken, ArticlesController.store);
 routers.route('/articles/:articleId').get(Auth.verifyToken, ArticlesController.findOne);
 
