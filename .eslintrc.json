@@ -30,6 +30,7 @@
         "no-plusplus": "off",
         "no-empty-function": "off",
         "consistent-return": "off",
-        "radix": "off"
+        "radix": "off",
+        "max-len": "off"
     }
 }
