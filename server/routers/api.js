@@ -18,5 +18,6 @@ routers.route('/feeds').get(Auth.verifyToken, ArticlesController.findAll);
 routers.route('/articles').post(Auth.verifyToken, ArticlesController.store);
 routers.route('/articles/:articleId').get(Auth.verifyToken, ArticlesController.findOne);
 routers.route('/articles/:articleId').delete(Auth.verifyToken, ArticlesController.destroy);
+routers.route('/articles/:articleId/comments').post(Auth.verifyToken, ArticlesController.addComment);
 
 export default routers;

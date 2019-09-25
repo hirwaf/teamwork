@@ -89,8 +89,10 @@ describe('Articles endpoint tests', () => {
       .get(`/api/v1/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
-        response.body.should.have.property('status').equal(404);
-        response.body.should.have.property('message').equal('Article not found !');
+        response.body.should.have.property('status')
+          .equal(404);
+        response.body.should.have.property('message')
+          .equal('Article not found !');
       });
     done();
   });
@@ -101,8 +103,10 @@ describe('Articles endpoint tests', () => {
       .get(`/api/v1/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
-        response.body.should.have.property('status').equal(200);
-        response.body.should.have.property('message').equal('Article found !');
+        response.body.should.have.property('status')
+          .equal(200);
+        response.body.should.have.property('message')
+          .equal('Article found !');
         response.body.should.have.property('data');
         response.body.data.should.be.an('Object');
         response.body.data.should.have.property('id');
@@ -121,8 +125,10 @@ describe('Articles endpoint tests', () => {
       .get('/api/v1/feeds')
       .set('token', token)
       .end((request, response) => {
-        response.body.should.have.property('status').equal(200);
-        response.body.should.have.property('message').equal('Success');
+        response.body.should.have.property('status')
+          .equal(200);
+        response.body.should.have.property('message')
+          .equal('Success');
         response.body.should.have.property('data');
       });
     done();
@@ -145,8 +151,42 @@ describe('Articles endpoint tests', () => {
       .delete(`/api/v1/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
-        response.body.should.have.property('status').equal(404);
-        response.body.should.have.property('message').equal('Article Not Found !!');
+        response.body.should.have.property('status')
+          .equal(404);
+        response.body.should.have.property('message')
+          .equal('Article Not Found !!');
+      });
+    done();
+  });
+
+  it('should fail to add comment', (done) => {
+    const comment = '';
+    const articleId = 4;
+    chai.request(server)
+      .post(`/api/v1/articles/${articleId}/comments`)
+      .set('token', token)
+      .send({ comment })
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(422);
+      });
+    done();
+  });
+
+  it('should add a comment', (done) => {
+    const comment = 'this is what i used to say to people and didn\'t believe me !!';
+    const articleId = 4;
+    chai.request(server)
+      .post(`/api/v1/articles/${articleId}/comments`)
+      .set('token', token)
+      .send({ comment })
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(201);
+        response.body.should.have.property('message').equal('Comment successfully added.');
+        response.body.data.should.have.property('articleTitle');
+        response.body.data.should.have.property('article');
+        response.body.data.should.have.property('comment').equal(comment);
       });
     done();
   });

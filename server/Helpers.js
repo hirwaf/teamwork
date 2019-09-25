@@ -13,6 +13,20 @@ const Helpers = {
     // return bcrypt.hashSync(token, bcrypt.genSaltSync(8));
     return jwt.sign({ id: userId }, process.env.JWT_SECRET);
   },
+  validationResponse(validation, response) {
+    if (validation.error != null) {
+      const errors = [];
+      for (let index = 0; index < validation.error.details.length; index++) {
+        errors.push(validation.error.details[index].message.split('"')
+          .join(''));
+      }
+      return response.status(422)
+        .send({
+          status: response.statusCode,
+          message: errors,
+        });
+    }
+  },
 };
 
 export default Helpers;
