@@ -31,6 +31,7 @@
         "no-empty-function": "off",
         "consistent-return": "off",
         "radix": "off",
-        "max-len": "off"
+        "max-len": "off",
+        "no-underscore-dangle": "off"
     }
 }

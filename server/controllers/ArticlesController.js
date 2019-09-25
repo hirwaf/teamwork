@@ -3,7 +3,6 @@ import moment from 'moment';
 import Helpers from '../Helpers';
 
 const ArticlesController = {
-
   store(request, response) {
     const {
       title, image, article,
@@ -17,19 +16,8 @@ const ArticlesController = {
         article: joi.string()
           .required(),
       });
-    const validation = joi.validate(request.body, schema, { abortEarly: false });
-    if (validation.error != null) {
-      const errors = [];
-      for (let index = 0; index < validation.error.details.length; index++) {
-        errors.push(validation.error.details[index].message.split('"')
-          .join(''));
-      }
-      return response.status(422)
-        .send({
-          status: response.statusCode,
-          message: errors,
-        });
-    }
+
+    Helpers.validationResponse(joi.validate(request.body, schema, { abortEarly: false }), response);
 
     const createdOn = moment()
       .format('YYYY-MM-DD HH:mm:ss');
@@ -165,6 +153,28 @@ const ArticlesController = {
       .send({
         status: response.statusCode,
         message: 'Article not found !',
+      });
+  },
+  addComment(request, response) {
+    const schema = joi.object()
+      .keys({
+        comment: joi.string()
+          .trim()
+          .required(),
+      });
+
+    Helpers.validationResponse(joi.validate(request.body, schema, { abortEarly: false }), response);
+
+    return response.status(201)
+      .send({
+        status: response.statusCode,
+        message: 'Comment successfully added.',
+        data: {
+          createdOn: moment().format('YYYY-MM-DD HH:mm:ss'),
+          articleTitle: 'Vitae tortor condimentum lacinia',
+          article: 'Vitae tortor condimentum lacinia',
+          comment: request.body.comment,
+        },
       });
   },
 };
