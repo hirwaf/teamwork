@@ -14,7 +14,7 @@ const Auth = {
     try {
       const user = await jwt.verify(token, process.env.JWT_SECRET);
       if (!user) {
-        return response.status(400)
+        return response.status(401)
           .send({
             status: response.statusCode,
             message: 'Token expired',
@@ -23,7 +23,7 @@ const Auth = {
       request.user = { id: user.id };
       next();
     } catch (error) {
-      return response.status(400)
+      return response.status(401)
         .send({
           status: response.statusCode,
           message: 'Invalid token',

@@ -66,6 +66,42 @@ const ArticlesController = {
       });
   },
   update(request, response) {
+    const articles = 4;
+    const { articleId } = request.params;
+    if (parseInt(articleId) !== articles) {
+      return response.status(404).send({
+        status: response.statusCode,
+        message: 'Article no found !',
+      });
+    }
+    const {
+      title, image, article,
+    } = request.body;
+    const schema = joi.object()
+      .keys({
+        title: joi.string()
+          .trim()
+          .required(),
+        image: joi.string(),
+        article: joi.string()
+          .required(),
+      });
+
+    Helpers.validationResponse(joi.validate(request.body, schema, { abortEarly: false }), response);
+
+    const createdOn = moment()
+      .format('YYYY-MM-DD HH:mm:ss');
+    return response.status(200)
+      .send({
+        status: response.statusCode,
+        message: 'Article successfully edited',
+        data: {
+          title,
+          image,
+          article,
+          createdOn,
+        },
+      });
   },
   destroy(request, response) {
     const articles = [
