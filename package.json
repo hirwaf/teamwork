@@ -28,6 +28,9 @@
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.24.0",
     "morgan": "^1.9.1",
+    "sinon": "^7.5.0",
+    "sinon-chai": "^3.3.0",
+    "sinon-express-mock": "^2.2.1",
     "swagger-ui-express": "^4.0.7"
   },
   "devDependencies": {
