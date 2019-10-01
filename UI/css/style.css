@@ -20,6 +20,9 @@ body {
     margin-right: auto;
     margin-left: auto;
 }
+.container main {
+    min-height: 100vh;
+}
 
 @media (min-width: 576px) {
     .container {
@@ -47,10 +50,15 @@ body {
 
 header, footer {
     background-color: #fff;
-    z-index: 999;
+    z-index: 9999;
     border-bottom: 1px solid #ebebeb;
     box-shadow: 0 0 6px #ebebeb;
     padding: 1em;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
 }
 
 header .title,
