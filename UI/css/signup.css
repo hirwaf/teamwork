@@ -2,12 +2,9 @@ form .field {
     margin-bottom: 1em;
 }
 form {
-    background-image: url("../assets/images/signup_form_bg.jpg");
-    background-attachment: fixed;
-    background-size: cover;
+    background-color: #ebedee;
     box-shadow: 0px 5px 20px #ebedee;
     margin-top: 3rem !important;
-
     margin-bottom: 3rem !important;
 }
 form .field input, form .field select {
