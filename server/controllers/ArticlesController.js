@@ -7,17 +7,6 @@ const ArticlesController = {
     const {
       title, image, article,
     } = request.body;
-    const schema = joi.object()
-      .keys({
-        title: joi.string()
-          .trim()
-          .required(),
-        image: joi.required(),
-        article: joi.string()
-          .required(),
-      });
-
-    Helpers.validationResponse(joi.validate(request.body, schema, { abortEarly: false }), response);
 
     const createdOn = moment()
       .format('YYYY-MM-DD HH:mm:ss');
@@ -77,17 +66,6 @@ const ArticlesController = {
     const {
       title, image, article,
     } = request.body;
-    const schema = joi.object()
-      .keys({
-        title: joi.string()
-          .trim()
-          .required(),
-        image: joi.string(),
-        article: joi.string()
-          .required(),
-      });
-
-    Helpers.validationResponse(joi.validate(request.body, schema, { abortEarly: false }), response);
 
     const createdOn = moment()
       .format('YYYY-MM-DD HH:mm:ss');
@@ -192,15 +170,6 @@ const ArticlesController = {
       });
   },
   addComment(request, response) {
-    const schema = joi.object()
-      .keys({
-        comment: joi.string()
-          .trim()
-          .required(),
-      });
-
-    Helpers.validationResponse(joi.validate(request.body, schema, { abortEarly: false }), response);
-
     return response.status(201)
       .send({
         status: response.statusCode,
