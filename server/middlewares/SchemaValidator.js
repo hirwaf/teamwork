@@ -10,7 +10,6 @@ const getSchema = (route, method) => {
     articles: articleSchema,
   };
   const routePrefix = _.words(route)[0];
-  console.log(route);
   let schema = _.get(schemas, routePrefix);
   if (_.includes(['patch'], method)) {
     schema = schema.patch;
@@ -33,7 +32,6 @@ const validation = (request, response, next) => {
   if (_.includes(allowedRequestMethod, method) && _.has(schemaObj, route)) {
     const schema = _.get(schemaObj, route);
     const validating = Helpers.validationResponse(Joi.validate(request.body, schema, options), response);
-    if (route === '/articles/:articleId/comments/') console.log(validating);
     if (validating) return validating;
   }
   next();
