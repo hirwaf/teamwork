@@ -26,23 +26,6 @@ before((done) => {
 });
 
 describe('Articles endpoint tests', () => {
-  it('should fail due to token issues', (done) => {
-    const data = {};
-    chai.request(server)
-      .post('/api/v1/articles')
-      .send(data)
-      .end((request, response) => {
-        response.body.should.have.property('status')
-          .to
-          .be
-          .oneOf([401, 400]);
-        response.body.should.have.property('message')
-          .to
-          .be
-          .oneOf(['Unauthorized, No token provided', 'Token expired', 'Invalid token']);
-      });
-    done();
-  });
   it('Should fail to create an article ', (done) => {
     const data = {};
     chai.request(server)

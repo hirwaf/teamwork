@@ -44,14 +44,6 @@ describe('Create user account endpoint', () => {
         response.body.should.have.property('data');
         response.body.data.should.be.an('Object');
         response.body.data.should.have.property('token');
-        response.body.data.should.have.property('user_id');
-        response.body.data.should.have.property('firstName').equal(data.firstName);
-        response.body.data.should.have.property('lastName').equal(data.lastName);
-        response.body.data.should.have.property('email').equal(data.email);
-        response.body.data.should.have.property('gender').equal(data.gender);
-        response.body.data.should.have.property('jobRole').equal(data.jobRole);
-        response.body.data.should.have.property('department').equal(data.department);
-        response.body.data.should.have.property('address').equal(data.address);
         done();
       });
   });
