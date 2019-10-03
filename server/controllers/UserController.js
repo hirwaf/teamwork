@@ -1,4 +1,5 @@
 import Helpers from '../Helpers';
+import users from '../models/user';
 
 const UserController = {
   UserSignUp(request, response) {
@@ -17,19 +18,10 @@ const UserController = {
       });
   },
   UserLogin(request, response) {
-    const staticData = {
-      id: 5,
-      firstName: 'hirwa',
-      lastName: 'felix',
-      email: 'hirwaf.1@gmail.com',
-      password: '$2b$08$k5LNWfkiwEUmXgMGzvW1KOnLXd8JZkmqZGqMNqbbiehzEBUFlQEv2',
-      gender: 'male',
-      jobRole: 'developer',
-      department: 'Software developer',
-      address: 'kigali-kicukiro-noboye',
-    };
     const { email, password } = request.body;
-    if (Helpers.comparePassword(staticData.password, password) && staticData.email === email) {
+    const staticData = users.find((user) => user.email === email);
+
+    if (staticData && Helpers.comparePassword(staticData.password, password)) {
       const token = Helpers.generateToken(staticData.id);
       return response.status(200)
         .send({

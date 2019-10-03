@@ -14,5 +14,6 @@ articles.route('/articles/:articleId').get(ArticlesController.findOne);
 articles.route('/articles/:articleId').delete(ArticlesController.destroy);
 articles.route('/articles/:articleId/comments').post(ArticlesController.addComment);
 articles.route('/articles/:articleId').patch(ArticlesController.update);
+articles.route('/feeds/:tagId/tags').get(ArticlesController.findByTag);
 
 export default articles;

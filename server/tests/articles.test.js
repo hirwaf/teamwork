@@ -233,4 +233,30 @@ describe('Articles endpoint tests', () => {
       });
     done();
   });
+  it('should not found article, wrong tag', () => {
+    const tagId = 56;
+    chai.request(server)
+      .get(`/api/v1//feeds/${tagId}/tags`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(404);
+        response.body.should.have.property('message')
+          .equal('No articles found !');
+      });
+  });
+
+  it('should found articles by tag', () => {
+    const tagId = 1;
+    chai.request(server)
+      .get(`/api/v1//feeds/${tagId}/tags`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(200);
+        response.body.should.have.property('message')
+          .equal('Success');
+        response.body.data.should.be.an('Array');
+      });
+  });
 });
