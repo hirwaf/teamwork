@@ -36,7 +36,7 @@ const signupSchema = Joi.object()
 
 const signinSchema = Joi.object()
   .keys({
-    email: Joi.string()
+    email: Joi.string().trim()
       .email()
       .required(),
     password: Joi.string()
