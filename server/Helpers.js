@@ -27,6 +27,16 @@ const Helpers = {
         });
     }
   },
+  sendResponse(response, codeStatus, message, data = undefined) {
+    const res = {
+      message,
+      status: codeStatus,
+    };
+    if (data !== undefined) {
+      res.data = data;
+    }
+    return response.status(codeStatus).send(res);
+  },
 };
 
 export default Helpers;

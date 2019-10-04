@@ -8,14 +8,7 @@ const UserController = {
     } = request.body;
     const token = Helpers.generateToken(5);
     const hashedPassword = Helpers.hashPassword(password);
-    response.status(201)
-      .send({
-        status: response.statusCode,
-        message: 'User created successfully',
-        data: {
-          token,
-        },
-      });
+    return Helpers.sendResponse(response, 201, 'User created successfully', { token });
   },
   UserLogin(request, response) {
     const { email, password } = request.body;
@@ -23,20 +16,9 @@ const UserController = {
 
     if (staticData && Helpers.comparePassword(staticData.password, password)) {
       const token = Helpers.generateToken(staticData.id);
-      return response.status(200)
-        .send({
-          status: response.statusCode,
-          message: 'User is successfully logged in',
-          data: {
-            token,
-          },
-        });
+      return Helpers.sendResponse(response, 200, 'User is successfully logged in', { token });
     }
-    return response.status(400)
-      .send({
-        status: response.statusCode,
-        message: 'Invalid credentials',
-      });
+    return Helpers.sendResponse(response, 400, 'Invalid credentials');
   },
 };
 
