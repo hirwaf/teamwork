@@ -12,7 +12,7 @@ const UserController = {
   },
   UserLogin(request, response) {
     const { email, password } = request.body;
-    const staticData = users.find((user) => user.email === email);
+    const staticData = users.find((user) => user.email === email.trim());
 
     if (staticData && Helpers.comparePassword(staticData.password, password)) {
       const token = Helpers.generateToken(staticData.id);
