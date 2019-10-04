@@ -128,6 +128,24 @@ const ArticlesController = {
         },
       });
   },
+  findByAuthor(request, response) {
+    const { authorId } = request.params;
+    const results = articles.filter((article) => article.authorId === parseInt(authorId));
+    if (results.length <= 0) {
+      return response.status(404)
+        .send({
+          status: response.statusCode,
+          message: 'No articles found !',
+          data: results,
+        });
+    }
+    return response.status(200)
+      .send({
+        status: response.statusCode,
+        message: 'Success',
+        data: results,
+      });
+  },
 };
 
 export default ArticlesController;
