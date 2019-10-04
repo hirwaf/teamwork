@@ -263,7 +263,7 @@ describe('Articles endpoint tests', () => {
   it('should not found article by author', () => {
     const authorId = 1;
     chai.request(server)
-      .get(`/api/v1/articles/${authorId}/author`)
+      .get(`/api/v1/author/articles/${authorId}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -276,7 +276,7 @@ describe('Articles endpoint tests', () => {
   it('should found articles by author', () => {
     const authorId = 5;
     chai.request(server)
-      .get(`/api/v1/articles/${authorId}/author`)
+      .get(`/api/v1/author/articles/${authorId}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
