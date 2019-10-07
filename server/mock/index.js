@@ -1,6 +1,5 @@
 import users from './user';
 import articles from './article';
+import auth from './auth';
 
-const models = [users, articles];
-
-export default models;
+export { users, articles, auth };

@@ -2,29 +2,31 @@ import chai from 'chai';
 import chaiHttp from 'chai-http';
 import chaiThings from 'chai-things';
 import { describe } from 'mocha';
-import joi from '@hapi/joi';
 import server from '../../index';
 import InitDB from '../database/init_db';
-import users from '../mock/user';
+import { users, auth } from '../mock';
 
 chai.should();
 chai.use(chaiThings);
 chai.use(chaiHttp);
 
-let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNTcwMTExNzkzfQ.1eVK7gkolstypQM_nykq7i5NRlkiROeGpZVFiNhdbOs';
-before(async () => {
-  await InitDB.run();
-  const login = {
-    email: users[0].email,
-    password: users[0].textPassword,
-  };
+let { token } = auth;
+before((done) => {
+  InitDB.run().then(() => {
+    const login = {
+      email: users[0].email,
+      password: users[0].textPassword,
+    };
 
-  chai.request(server)
-    .post('/api/v2/auth/signin/')
-    .send(login)
-    .end((error, response) => {
-      token = response.body.data.token;
-    });
+    chai.request(server)
+      .post('/api/v2/auth/signin/')
+      .send(login)
+      .end((error, response) => {
+        token = response.body.data.token;
+        console.log(token);
+      });
+    done();
+  });
 });
 
 describe('Articles endpoint tests', () => {
@@ -131,7 +133,7 @@ describe('Articles endpoint tests', () => {
   });
 
   it('should fail to delete article', (done) => {
-    const articleID = 5;
+    const articleID = 9;
     chai.request(server)
       .delete(`/api/v2/articles/${articleID}`)
       .set('token', token)
@@ -263,7 +265,7 @@ describe('Articles endpoint tests', () => {
   });
 
   it('should not found article by author', () => {
-    const authorId = 1;
+    const authorId = 89;
     chai.request(server)
       .get(`/api/v2/author/articles/${authorId}`)
       .set('token', token)
@@ -276,7 +278,7 @@ describe('Articles endpoint tests', () => {
   });
 
   it('should found articles by author', () => {
-    const authorId = 5;
+    const authorId = 1;
     chai.request(server)
       .get(`/api/v2/author/articles/${authorId}`)
       .set('token', token)
