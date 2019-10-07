@@ -1,19 +1,22 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const Helpers = {
-  hashPassword(password) {
+class Helpers {
+  static hashPassword(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(8));
-  },
-  comparePassword(hashPassword, password) {
+  }
+
+  static comparePassword(hashPassword, password) {
     return bcrypt.compareSync(password, hashPassword);
-  },
-  generateToken(userId) {
+  }
+
+  static generateToken(userId) {
     // const random = Math.random().toString(36).substring(7);
     // return bcrypt.hashSync(token, bcrypt.genSaltSync(8));
     return jwt.sign({ id: userId }, process.env.JWT_SECRET);
-  },
-  validationResponse(validation, response) {
+  }
+
+  static validationResponse(validation, response) {
     if (validation.error != null) {
       const errors = [];
       for (let index = 0; index < validation.error.details.length; index++) {
@@ -26,8 +29,9 @@ const Helpers = {
           message: errors,
         });
     }
-  },
-  sendResponse(response, codeStatus, message, data = undefined) {
+  }
+
+  static sendResponse(response, codeStatus, message, data = undefined) {
     const res = {
       message,
       status: codeStatus,
@@ -36,7 +40,14 @@ const Helpers = {
       res.data = data;
     }
     return response.status(codeStatus).send(res);
-  },
-};
+  }
+
+  static dbError(response, query) {
+    if (query.errors) {
+      console.log(query.errors);
+      return Helpers.sendResponse(response, 501, 'Oops Something went wrong.');
+    }
+  }
+}
 
 export default Helpers;

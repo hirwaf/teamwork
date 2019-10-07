@@ -36,6 +36,8 @@
         "no-prototype-builtins": "off",
         "import/prefer-default-export" : "off",
         "null" : "off",
-        "class-methods-use-this" : "off"
+        "class-methods-use-this" : "off",
+        "no-return-await": "off",
+        "import/named" : "off"
     }
 }
