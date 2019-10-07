@@ -1,5 +1,5 @@
-import Helpers from '../Helpers';
-import users from '../models/user';
+import Helpers from '../helpers/Helpers';
+import users from '../mock/user';
 
 class UserController {
   static signUp(request, response) {

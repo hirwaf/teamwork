@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import Joi from '@hapi/joi';
 import Schemas from '../validations';
-import Helpers from '../Helpers';
+import Helpers from '../helpers/Helpers';
 
 const getSchema = (route, method) => {
   const { userSchemas, articleSchema } = Schemas;

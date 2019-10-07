@@ -33,6 +33,9 @@
         "radix": "off",
         "max-len": "off",
         "no-underscore-dangle": "off",
-        "no-prototype-builtins": "off"
+        "no-prototype-builtins": "off",
+        "import/prefer-default-export" : "off",
+        "null" : "off",
+        "class-methods-use-this" : "off"
     }
 }

@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import swagger from 'swagger-ui-express';
 import routers from './server/routers';
 import swaggerJson from './swagger';
+import Database from './server/database/database';
 
 dotenv.config();
 const app = express();
@@ -15,8 +16,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 app.use(morgan('short'));
 
-app.use('/api/v1/', routers);
-app.use('/docs/v1/', swagger.serve, swagger.setup(swaggerJson));
+app.use('/api/v2/', routers);
+app.use('/docs/v2/', swagger.serve, swagger.setup(swaggerJson));
 app.listen(PORT, () => {
   console.log(`Magic happens on port ${PORT}`);
 });
