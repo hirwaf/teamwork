@@ -1,6 +1,6 @@
 import moment from 'moment';
-import articles from '../models/article';
-import Helpers from '../Helpers';
+import articles from '../mock/article';
+import Helpers from '../helpers/Helpers';
 
 class ArticlesController {
   static store(request, response) {

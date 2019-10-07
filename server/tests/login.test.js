@@ -11,7 +11,7 @@ describe('User Authentication', () => {
   it('should return 422 http status', (done) => {
     const data = {};
     chai.request(server)
-      .post('/api/v1/auth/signin/')
+      .post('/api/v2/auth/signin/')
       .send(data)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -27,7 +27,7 @@ describe('User Authentication', () => {
       password: 'passwords',
     };
     chai.request(server)
-      .post('/api/v1/auth/signin/')
+      .post('/api/v2/auth/signin/')
       .send(data)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -44,7 +44,7 @@ describe('User Authentication', () => {
       password: 'password',
     };
     chai.request(server)
-      .post('/api/v1/auth/signin/')
+      .post('/api/v2/auth/signin/')
       .send(data)
       .end((request, response) => {
         response.body.should.have.property('status')

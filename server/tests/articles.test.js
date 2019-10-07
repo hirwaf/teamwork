@@ -17,7 +17,7 @@ before((done) => {
   };
 
   chai.request(server)
-    .post('/api/v1/auth/signin/')
+    .post('/api/v2/auth/signin/')
     .send(login)
     .end((error, response) => {
       token = response.body.data.token;
@@ -29,7 +29,7 @@ describe('Articles endpoint tests', () => {
   it('Should fail to create an article ', (done) => {
     const data = {};
     chai.request(server)
-      .post('/api/v1/articles')
+      .post('/api/v2/articles')
       .send(data)
       .set('token', token)
       .end((request, response) => {
@@ -45,7 +45,7 @@ describe('Articles endpoint tests', () => {
       article: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     };
     chai.request(server)
-      .post('/api/v1/articles')
+      .post('/api/v2/articles')
       .send(data)
       .set('token', token)
       .end((request, response) => {
@@ -69,7 +69,7 @@ describe('Articles endpoint tests', () => {
   it('should not found article', (done) => {
     const articleID = 1;
     chai.request(server)
-      .get(`/api/v1/articles/${articleID}`)
+      .get(`/api/v2/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -83,7 +83,7 @@ describe('Articles endpoint tests', () => {
   it('should found article', (done) => {
     const articleID = 5;
     chai.request(server)
-      .get(`/api/v1/articles/${articleID}`)
+      .get(`/api/v2/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -105,7 +105,7 @@ describe('Articles endpoint tests', () => {
 
   it('should get feeds', (done) => {
     chai.request(server)
-      .get('/api/v1/feeds')
+      .get('/api/v2/feeds')
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -120,7 +120,7 @@ describe('Articles endpoint tests', () => {
   it('should delete article', (done) => {
     const articleID = 4;
     chai.request(server)
-      .delete(`/api/v1/articles/${articleID}`)
+      .delete(`/api/v2/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
         response.status.should.equal(204);
@@ -131,7 +131,7 @@ describe('Articles endpoint tests', () => {
   it('should fail to delete article', (done) => {
     const articleID = 5;
     chai.request(server)
-      .delete(`/api/v1/articles/${articleID}`)
+      .delete(`/api/v2/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -146,7 +146,7 @@ describe('Articles endpoint tests', () => {
     const comment = '';
     const articleId = 4;
     chai.request(server)
-      .post(`/api/v1/articles/${articleId}/comments`)
+      .post(`/api/v2/articles/${articleId}/comments`)
       .set('token', token)
       .send({ comment })
       .end((request, response) => {
@@ -160,7 +160,7 @@ describe('Articles endpoint tests', () => {
     const comment = 'this is what i used to say to people and didn\'t believe me !!';
     const articleId = 4;
     chai.request(server)
-      .post(`/api/v1/articles/${articleId}/comments`)
+      .post(`/api/v2/articles/${articleId}/comments`)
       .set('token', token)
       .send({ comment })
       .end((request, response) => {
@@ -182,7 +182,7 @@ describe('Articles endpoint tests', () => {
       article: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     };
     chai.request(server)
-      .patch(`/api/v1/articles/${articleId}`)
+      .patch(`/api/v2/articles/${articleId}`)
       .set('token', token)
       .send(data)
       .end((request, response) => {
@@ -196,7 +196,7 @@ describe('Articles endpoint tests', () => {
   it('should fail to edit article due to validation', (done) => {
     const articleId = 4;
     chai.request(server)
-      .patch(`/api/v1/articles/${articleId}`)
+      .patch(`/api/v2/articles/${articleId}`)
       .set('token', token)
       .send({})
       .end((request, response) => {
@@ -214,7 +214,7 @@ describe('Articles endpoint tests', () => {
       article: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     };
     chai.request(server)
-      .patch(`/api/v1/articles/${articleId}`)
+      .patch(`/api/v2/articles/${articleId}`)
       .set('token', token)
       .send(data)
       .end((request, response) => {
@@ -236,7 +236,7 @@ describe('Articles endpoint tests', () => {
   it('should not found article, wrong tag', () => {
     const tagId = 56;
     chai.request(server)
-      .get(`/api/v1/feeds/${tagId}/tags`)
+      .get(`/api/v2/feeds/${tagId}/tags`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -249,7 +249,7 @@ describe('Articles endpoint tests', () => {
   it('should found articles by tag', () => {
     const tagId = 1;
     chai.request(server)
-      .get(`/api/v1/feeds/${tagId}/tags`)
+      .get(`/api/v2/feeds/${tagId}/tags`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -263,7 +263,7 @@ describe('Articles endpoint tests', () => {
   it('should not found article by author', () => {
     const authorId = 1;
     chai.request(server)
-      .get(`/api/v1/author/articles/${authorId}`)
+      .get(`/api/v2/author/articles/${authorId}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -276,7 +276,7 @@ describe('Articles endpoint tests', () => {
   it('should found articles by author', () => {
     const authorId = 5;
     chai.request(server)
-      .get(`/api/v1/author/articles/${authorId}`)
+      .get(`/api/v2/author/articles/${authorId}`)
       .set('token', token)
       .end((request, response) => {
         response.body.should.have.property('status')

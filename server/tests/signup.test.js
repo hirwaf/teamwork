@@ -13,7 +13,7 @@ describe('Create user account endpoint', () => {
   it('should return 422 http status', (done) => {
     const data = {};
     chai.request(server)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .send(data)
       .end((request, response) => {
         response.body.should.have.property('status')
@@ -34,7 +34,7 @@ describe('Create user account endpoint', () => {
       address: 'kigali-kicukiro-niboye',
     };
     chai.request(server)
-      .post('/api/v1/auth/signup')
+      .post('/api/v2/auth/signup')
       .send(data)
       .end((request, response) => {
         response.body.should.have.property('status')

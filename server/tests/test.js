@@ -12,7 +12,7 @@ chai.use(chaiHttp);
 describe('Endpoint prefix', () => {
   it('should return 400 http status', (done) => {
     chai.request(server)
-      .get('/api/v1/')
+      .get('/api/v2/')
       .end((request, response) => {
         response.body.should.have.property('status')
           .equal(400);

@@ -1,6 +1,4 @@
-import users from './user';
-import articles from './article';
+import User from './user';
+import Article from './article';
 
-const models = [users, articles];
-
-export default models;
+export { User, Article };
