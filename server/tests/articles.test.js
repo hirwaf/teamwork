@@ -3,7 +3,6 @@ import chaiHttp from 'chai-http';
 import chaiThings from 'chai-things';
 import { describe } from 'mocha';
 import server from '../../index';
-import InitDB from '../database/init_db';
 import { users, auth } from '../mock';
 
 chai.should();
@@ -12,21 +11,18 @@ chai.use(chaiHttp);
 
 let { token } = auth;
 before((done) => {
-  InitDB.run().then(() => {
-    const login = {
-      email: users[0].email,
-      password: users[0].textPassword,
-    };
+  const login = {
+    email: users[0].email,
+    password: users[0].textPassword,
+  };
 
-    chai.request(server)
-      .post('/api/v2/auth/signin/')
-      .send(login)
-      .end((error, response) => {
-        token = response.body.data.token;
-        console.log(token);
-      });
-    done();
-  });
+  chai.request(server)
+    .post('/api/v2/auth/signin/')
+    .send(login)
+    .end((error, response) => {
+      token = response.body.data.token;
+    });
+  done();
 });
 
 describe('Articles endpoint tests', () => {
