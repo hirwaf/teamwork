@@ -17,12 +17,12 @@ class UserController {
     return Helpers.sendResponse(response, 201, 'User created successfully', { token });
   }
 
-  static signIn(request, response) {
+  static async signIn(request, response) {
     const { email, password } = request.body;
-    const staticData = users.find((_user) => _user.email === email.trim());
-
-    if (staticData && Helpers.comparePassword(staticData.password, password)) {
-      const token = Helpers.generateToken(staticData.id);
+    const _user = await user.getByEmail(email);
+    Helpers.dbError(response, _user);
+    if (_user.count > 0 && Helpers.comparePassword(_user.row.password, password)) {
+      const token = Helpers.generateToken(_user.row.id);
       return Helpers.sendResponse(response, 200, 'User is successfully logged in', { token });
     }
     return Helpers.sendResponse(response, 400, 'Invalid credentials');
