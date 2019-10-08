@@ -2,6 +2,7 @@ import chai from 'chai';
 import chaiThings from 'chai-things';
 import chaiHttp from 'chai-http';
 import server from '../../index';
+import users from '../mock/user';
 
 chai.should();
 chai.use(chaiThings);
@@ -23,8 +24,8 @@ describe('User Authentication', () => {
 
   it('should return 400 http status', (done) => {
     const data = {
-      email: 'hirwaf.1@gmail.com',
-      password: 'passwords',
+      email: users[0].email,
+      password: users[0].password,
     };
     chai.request(server)
       .post('/api/v2/auth/signin/')
@@ -40,8 +41,8 @@ describe('User Authentication', () => {
 
   it('should return 200 http status', (done) => {
     const data = {
-      email: 'hirwaf.1@gmail.com',
-      password: 'password',
+      email: users[0].email,
+      password: users[0].textPassword,
     };
     chai.request(server)
       .post('/api/v2/auth/signin/')

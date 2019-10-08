@@ -4,16 +4,19 @@ import chaiThings from 'chai-things';
 import { describe } from 'mocha';
 import joi from '@hapi/joi';
 import server from '../../index';
+import InitDB from '../database/init_db';
+import users from '../mock/user';
 
 chai.should();
 chai.use(chaiThings);
 chai.use(chaiHttp);
 
-let token;
-before((done) => {
+let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiaWF0IjoxNTcwMTExNzkzfQ.1eVK7gkolstypQM_nykq7i5NRlkiROeGpZVFiNhdbOs';
+before(async () => {
+  await InitDB.run();
   const login = {
-    email: 'hirwaf.1@gmail.com',
-    password: 'password',
+    email: users[0].email,
+    password: users[0].textPassword,
   };
 
   chai.request(server)
@@ -21,7 +24,6 @@ before((done) => {
     .send(login)
     .end((error, response) => {
       token = response.body.data.token;
-      done();
     });
 });
 

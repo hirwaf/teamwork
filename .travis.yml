@@ -9,12 +9,15 @@ node_js:
 dist: trusty
 addons:
   chrome: stable
+services:
+  - postgresql
 before_script:
   - npm install coverage
   - npm install -g nyc
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  - psql -c 'create database teamwork_db_test;' -U postgres
 script:
   - npm test
 after_script:

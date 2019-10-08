@@ -5,7 +5,6 @@ import dotenv from 'dotenv';
 import swagger from 'swagger-ui-express';
 import routers from './server/routers';
 import swaggerJson from './swagger';
-import Database from './server/database/database';
 
 dotenv.config();
 const app = express();
