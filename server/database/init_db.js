@@ -1,9 +1,9 @@
 import { CreateEmployeesTable } from './migrations';
 
-class InitDB {
-  static async run() {
-    await CreateEmployeesTable.run();
-  }
-}
+const InitDB = async () => {
+  await CreateEmployeesTable.run();
+};
 
-export default InitDB;
+module.exports = InitDB;
+
+require('make-runnable');
