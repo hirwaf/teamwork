@@ -22,26 +22,21 @@ class ArticlesController {
     return Helpers.sendResponse(response, 200, 'Success', articles);
   }
 
-  static update(request, response) {
+  static async update(request, response) {
     const { articleId } = request.params;
     const { user } = request;
-    const _article = articles.find((article) => article.id === parseInt(articleId) && article.authorId === user.id);
-    if (!_article) {
-      return Helpers.sendResponse(response, 404, 'Article no found !');
-    }
-    const {
-      title, image, article,
-    } = request.body;
-
-    const createdOn = moment()
-      .format('YYYY-MM-DD HH:mm:ss');
     const data = {
-      title,
-      image,
-      article,
-      createdOn,
+      ...request.body,
     };
-    return Helpers.sendResponse(response, 200, 'Article successfully edited', data);
+    const update = await Model.update(data, {
+      authorId: user.id,
+      id: articleId,
+    });
+    if (update.errors) return Helpers.dbError(response, update);
+    if (update.count > 0) {
+      return Helpers.sendResponse(response, 200, 'Article successfully edited', data);
+    }
+    return Helpers.sendResponse(response, 404, 'Article no found !');
   }
 
   static destroy(request, response) {
@@ -69,11 +64,11 @@ class ArticlesController {
     const { tagId } = request.params;
     const getArticles = (_article) => {
       const gt = _article.tags.find((tag) => tag.id === parseInt(tagId));
-      if (gt) return _article;
+      if (gt !== undefined) return _article;
     };
     const results = articles.filter(getArticles);
-    if (results === undefined || results.length <= 0) {
-      return Helpers.sendResponse(response, 404, 'No articles found !', []);
+    if (results.length < 1) {
+      return Helpers.sendResponse(response, 404, 'No articles found !');
     }
     return Helpers.sendResponse(response, 200, 'Success', results);
   }
