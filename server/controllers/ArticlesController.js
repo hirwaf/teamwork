@@ -1,21 +1,20 @@
 import moment from 'moment';
 import articles from '../mock/article';
 import Helpers from '../helpers/Helpers';
+import { Article } from '../models';
+
+const Model = new Article();
 
 class ArticlesController {
-  static store(request, response) {
-    const {
-      title, image, article,
-    } = request.body;
-
-    const createdOn = moment()
-      .format('YYYY-MM-DD HH:mm:ss');
+  static async store(request, response) {
+    const { user } = request;
     const data = {
-      createdOn,
-      title,
-      image,
-      article,
+      ...request.body,
+      authorId: user.id,
+      createdOn: moment().format('YYYY-MM-DD HH:mm:ss'),
     };
+    const store = await Model.create(data);
+    if (store.errors) Helpers.dbError(response, store);
     return Helpers.sendResponse(response, 201, 'Article successfully created', data);
   }
 

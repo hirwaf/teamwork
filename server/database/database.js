@@ -42,27 +42,41 @@ class Database {
     const chunks = [];
     const values = [];
     const keys = [];
-    Object.keys(data).forEach((key) => {
-      keys.push(key);
-      params.push(data[key]);
-      values.push(`$${params.length}`);
-    });
+    Object.keys(data)
+      .forEach((key) => {
+        keys.push(key);
+        params.push(data[key]);
+        values.push(`$${params.length}`);
+      });
     chunks.push(`(${values.join(', ')})`);
     const query = `INSERT INTO ${this.table}(${keys.join(', ')}) values${chunks.join(', ')} RETURNING *`;
     return await this.queryBuilder(query, params);
   }
 
-  async first(column, op = '=', value) {
+  async where(column, op = '=', value, orderBy = 'id DESC') {
     if (this.table && column && value) {
-      const query = `SELECT * FROM ${this.table} WHERE ${column}${op}$1 LIMIT 1`;
-      const result = await this.queryBuilder(query, [value]);
-      if (result.errors) return result;
+      const sql = `SELECT * FROM ${this.table} WHERE ${column}${op}$1 ORDER BY ${orderBy}`;
+      const query = await this.queryBuilder(sql, [value]);
+      if (query.errors) return query;
       return {
-        row: result.rows[0],
-        count: result.count,
+        rows: query.rows,
+        count: query.count,
       };
     }
-    return { error: 'provide table name & column & value', response: null };
+    return {
+      error: 'provide table name & column & value',
+    };
+  }
+
+  async first(column, op = '=', value) {
+    const query = await this.where(column, op, value);
+    if (!query.error) {
+      return {
+        row: query.rows[0],
+        count: query.count,
+      };
+    }
+    return query;
   }
 }
 

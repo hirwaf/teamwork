@@ -12,7 +12,7 @@ class CreateEmployeesTable {
       + 'firstName VARCHAR (60) NOT NULL,'
       + 'lastName VARCHAR (60) NOT NULL,'
       + 'email VARCHAR (60) NOT NULL,'
-      + 'password VARCHAR (60) NOT NULL,'
+      + 'password VARCHAR (255) NOT NULL,'
       + 'gender VARCHAR (60) NOT NULL,'
       + 'jobRole VARCHAR (60) NOT NULL,'
       + 'department VARCHAR (60) NOT NULL,'

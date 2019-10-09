@@ -3,7 +3,7 @@ import chaiHttp from 'chai-http';
 import chaiThings from 'chai-things';
 import { describe } from 'mocha';
 import server from '../../index';
-import { users, auth } from '../mock';
+import { users, auth, articles } from '../mock';
 
 chai.should();
 chai.use(chaiThings);
@@ -35,6 +35,18 @@ describe('Articles endpoint tests', () => {
       .end((request, response) => {
         response.body.should.have.property('status')
           .equal(422);
+      });
+    done();
+  });
+  it('Should fail to create an article due database issues ', (done) => {
+    const data = { ...articles[0] };
+    chai.request(server)
+      .post('/api/v2/articles')
+      .send(data)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(501);
       });
     done();
   });
