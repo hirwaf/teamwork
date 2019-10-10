@@ -13,6 +13,10 @@ class Article extends Database {
   async getByAuthor(id) {
     return await this.where('authorId', '=', id);
   }
+
+  async all(orderBy = 'createdOn DESC') {
+    return super.all(orderBy);
+  }
 }
 
 export default Article;

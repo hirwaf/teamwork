@@ -1,7 +1,7 @@
 import moment from 'moment';
-import articles from '../mock/article';
 import Helpers from '../helpers/Helpers';
 import { Article } from '../models';
+import { articles } from '../mock';
 
 const Model = new Article();
 
@@ -18,8 +18,10 @@ class ArticlesController {
     return Helpers.sendResponse(response, 201, 'Article successfully created', data);
   }
 
-  static findAll(request, response) {
-    return Helpers.sendResponse(response, 200, 'Success', articles);
+  static async findAll(request, response) {
+    const _articles = await Model.all();
+    if (_articles.errors) Helpers.dbError(response, _articles);
+    return Helpers.sendResponse(response, 200, 'Success', _articles.rows);
   }
 
   static async update(request, response) {
@@ -55,7 +57,6 @@ class ArticlesController {
 
   static findOne(request, response) {
     const { articleId } = request.params;
-
     const result = articles.find((article) => article.id === parseInt(articleId));
 
     if (result !== undefined) {
