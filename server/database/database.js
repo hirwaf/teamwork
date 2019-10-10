@@ -78,6 +78,45 @@ class Database {
     }
     return query;
   }
+
+  async all(orderBy = 'id DESC') {
+    const sql = `SELECT * FROM ${this.table} ORDER BY ${orderBy}`;
+    const query = await this.queryBuilder(sql, []);
+    return (!query.error) ? {
+      rows: query.rows,
+      count: query.count,
+    } : query;
+  }
+
+  async delete(column, value) {
+    if (column && value) {
+      const sql = `DELETE FROM ${this.table} WHERE ${column}=$1`;
+      return this.queryBuilder(sql, [value]);
+    }
+    return { error: 'provide column & value' };
+  }
+
+  async update(data, where) {
+    if (data && where) {
+      const updates = this.prepareObject(data);
+      const conditions = this.prepareObject(where, ' AND ');
+      const sql = `UPDATE ${this.table} SET ${updates} WHERE ${conditions} RETURNING *`;
+      const query = await this.queryBuilder(sql);
+      return (!query.error) ? {
+        rows: query.rows,
+        count: query.count,
+      } : query;
+    }
+    return { error: 'provide data & condition' };
+  }
+
+  prepareObject(obj, separator = ', ') {
+    const chunks = [];
+    Object.keys(obj).forEach((key) => {
+      chunks.push(`${key}='${obj[key]}'`);
+    });
+    return chunks.join(`${separator}`);
+  }
 }
 
 export default Database;
