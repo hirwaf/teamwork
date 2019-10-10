@@ -55,12 +55,12 @@ class ArticlesController {
     return Helpers.sendResponse(response, 404, 'Article Not Found !!');
   }
 
-  static findOne(request, response) {
+  static async findOne(request, response) {
     const { articleId } = request.params;
-    const result = articles.find((article) => article.id === parseInt(articleId));
-
-    if (result !== undefined) {
-      return Helpers.sendResponse(response, 200, 'Article found !', result);
+    const result = await Model.getById(articleId);
+    if (result.errors) return Helpers.dbError(response, result);
+    if (result.count > 0) {
+      return Helpers.sendResponse(response, 200, 'Article found !', result.row);
     }
     return Helpers.sendResponse(response, 404, 'Article not found !');
   }
