@@ -39,11 +39,15 @@ class ArticlesController {
     return Helpers.sendResponse(response, 404, 'Article no found !');
   }
 
-  static destroy(request, response) {
+  static async destroy(request, response) {
     const { articleId } = request.params;
     const { user } = request;
-    const art = articles.find((article) => article.id === parseInt(articleId) && article.authorId === user.id);
-    if (art) {
+    const destroy = await Model.delete({
+      authorId: user.id,
+      id: articleId,
+    });
+    if (destroy.errors) return Helpers.dbError(response, destroy);
+    if (destroy.count > 0) {
       return Helpers.sendResponse(response, 204, 'Article successfully deleted');
     }
     return Helpers.sendResponse(response, 404, 'Article Not Found !!');

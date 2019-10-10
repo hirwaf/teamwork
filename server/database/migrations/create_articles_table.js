@@ -1,10 +1,10 @@
 import Database from '../database';
-import { User } from '../../models';
-import users from '../../mock/user';
+import { Article } from '../../models';
 import Helpers from '../../helpers/Helpers';
+import { articles } from '../../mock';
 
 const database = new Database();
-
+const dummy = { ...articles[0] };
 class CreateArticlesTable {
   static up() {
     return 'CREATE TABLE IF NOT EXISTS articles('
@@ -21,9 +21,23 @@ class CreateArticlesTable {
     return 'DROP TABLE IF EXISTS articles;';
   }
 
+  static async seeds() {
+    const article = new Article();
+    const articleMock = { ...dummy };
+    if (articleMock) {
+      delete articleMock.id;
+      delete articleMock.comments;
+      delete articleMock.tags;
+      return await article.create(articleMock);
+    }
+  }
+
   static async run() {
     await database.queryBuilder(CreateArticlesTable.down());
     await database.queryBuilder(CreateArticlesTable.up());
+    if (process.env.NODE_ENV === 'test') {
+      await CreateArticlesTable.seeds();
+    }
   }
 }
 
