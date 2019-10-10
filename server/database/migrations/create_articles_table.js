@@ -13,6 +13,7 @@ class CreateArticlesTable {
       + 'image VARCHAR (255) NOT NULL,'
       + 'article TEXT NOT NULL,'
       + 'authorId INT NOT NULL CHECK (authorId >= 0),'
+      + 'category_id INT NULL CHECK (category_id >= 0),'
       + 'createdOn timestamp NOT NULL'
       + ');';
   }
