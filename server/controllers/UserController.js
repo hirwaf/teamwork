@@ -9,7 +9,7 @@ class UserController {
     const data = request.body;
     data.password = Helpers.hashPassword(request.body.password);
     const checkEmail = await user.getByEmail(data.email);
-    Helpers.dbError(response, checkEmail);
+    if (checkEmail.errors) return Helpers.dbError(response, checkEmail);
     if (checkEmail.count > 0) return Helpers.sendResponse(response, 409, 'Email already exists !');
     const saveUser = await user.create(data);
     if (saveUser.errors) return Helpers.dbError(response, saveUser);

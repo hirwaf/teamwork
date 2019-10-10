@@ -10,11 +10,12 @@ class CreateArticlesTable {
     return 'CREATE TABLE IF NOT EXISTS articles('
       + 'id SERIAL PRIMARY KEY,'
       + 'title VARCHAR (255) NOT NULL,'
-      + 'image VARCHAR (255) NOT NULL,'
+      + 'image VARCHAR (255) NULL,'
       + 'article TEXT NOT NULL,'
       + 'authorId INT NOT NULL CHECK (authorId >= 0),'
       + 'category_id INT NULL CHECK (category_id >= 0),'
-      + 'createdOn timestamp NOT NULL'
+      + 'createdOn timestamp NOT NULL,'
+      + 'updatedOn timestamp NULL'
       + ');';
   }
 

@@ -29,6 +29,7 @@ class ArticlesController {
     const { user } = request;
     const data = {
       ...request.body,
+      updatedOn: moment().format('YYYY-MM-DD HH:mm:ss'),
     };
     const update = await Model.update(data, {
       authorId: user.id,
