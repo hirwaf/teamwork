@@ -22,28 +22,28 @@ describe('Test Auth Middleware', () => {
   });
 
   it('next should not be called if no token provided', (done) => {
-    // Auth.verifyToken(request, response, next);
-    // expect(next.called).to.equal(false);
+    Auth.verifyToken(request, response, next);
+    expect(next.called).to.equal(false);
     done();
   });
 
   it('should return 401 status code if no token provided', (done) => {
-    // Auth.verifyToken(request, response, next);
-    // expect(response.status.getCall(0).args[0]).to.equal(401);
+    Auth.verifyToken(request, response, next);
+    expect(response.status.getCall(0).args[0]).to.equal(401);
     done();
   });
 
   it('next should not be called if bad token was provided', (done) => {
     request.headers.token = 'some authorization header';
-    // Auth.verifyToken(request, response, next);
-    // expect(next.called).to.equal(false);
+    Auth.verifyToken(request, response, next);
+    expect(next.called).to.equal(false);
     done();
   });
 
   it('should return 401 status code if bad token was provided', (done) => {
     request.headers.token = null;
-    // Auth.verifyToken(request, response, next);
-    // expect(response.status.getCall(0).args[0]).to.equal(401);
+    Auth.verifyToken(request, response, next);
+    expect(response.status.getCall(0).args[0]).to.equal(401);
     done();
   });
 });

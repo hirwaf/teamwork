@@ -4,7 +4,7 @@ const article = {
   title: Joi.string()
     .trim()
     .required(),
-  image: Joi.required(),
+  image: Joi.string().uri(),
   article: Joi.string()
     .required(),
 };

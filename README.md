@@ -16,29 +16,29 @@ Starting application run the following npm scripts
 * `npm start` for starting the server.
 
 # Testing
-When you need to test the application and view test coverate run:
+When you need to test the application and view test coverage run:
 * `npm test` for running the tests, and getting coverage summary.
 
 # API
-* POST `/api/v1/auth/signup` Creating account.
-* POST `/api/v1/auth/signin` Sign in.
+* POST `/api/v2/auth/signup` Creating account.
+* POST `/api/v2/auth/signin` Sign in.
 
   **Require authentication**
   
-* GET `/api/v1/feeds` Retrieve all articles posted
-* GET `/api/v1/feeds/:tagId/tags` Retrieve articles by tag
-* GET `/api/v1/articles/:articleId` Fetch single article by its ID
-* GET `/api/v1/author/articles/:authorId` Fetch all articles by author ID
-* POST `/api/v1/articles` Create new article
-* POST `/api/v1/:articleId/comments` Add comment to an article
-* PATCH `/api/v1/articles/:articleId` Update an article
-* DELETE `/api/v1/articles/:articleId` Delete an article
+* GET `/api/v2/feeds` Retrieve all articles posted
+* GET `/api/v2/feeds/:tagId/tags` Retrieve articles by tag
+* GET `/api/v2/articles/:articleId` Fetch single article by its ID
+* GET `/api/v2/author/articles/:authorId` Fetch all articles by author ID
+* POST `/api/v2/articles` Create new article
+* POST `/api/v2/:articleId/comments` Add comment to an article
+* PATCH `/api/v2/articles/:articleId` Update an article
+* DELETE `/api/v2/articles/:articleId` Delete an article
 
 # Heroku 
-Access link :[Visit the link](https://teamworkadc.herokuapp.com/).
+Access link :[Visit the link](https://teamworkadc.herokuapp.com/api/v2/).
 
 # Swagger API Documentation
-Access link :[Visit the link](https://teamworkadc.herokuapp.com/docs/v1).
+Access link :[Visit the link](https://teamworkadc.herokuapp.com/docs/v2).
 
 # Github-page
 GitHub page (gh-page) of this project accessed using this link [Teamwork](https://hirwaf.github.io/teamwork/UI).

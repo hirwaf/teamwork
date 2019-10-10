@@ -320,6 +320,31 @@
           }
         }
       }
+    },
+    "/author/articles/:authorId": {
+      "get": {
+        "tags": [
+          "Articles"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "summary": "User can view articles by author",
+        "description": "This can only be done by the logged in user.",
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully"
+          },
+          "404": {
+            "description": "Not found"
+          }
+        }
+      }
     }
   },
   "securityDefinitions": {

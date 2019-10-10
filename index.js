@@ -17,6 +17,14 @@ app.use(morgan('short'));
 
 app.use('/api/v2/', routers);
 app.use('/docs/v2/', swagger.serve, swagger.setup(swaggerJson));
+
+app.use((request, response) => {
+  response.status(404).send({
+    status: 404,
+    error: 'Not Found !',
+  });
+});
+
 app.listen(PORT, () => {
   console.log(`Magic happens on port ${PORT}`);
 });
