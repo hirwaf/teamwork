@@ -1,6 +1,6 @@
 import moment from 'moment';
 import Helpers from '../helpers/Helpers';
-import { Article } from '../models';
+import { Article, Comment } from '../models';
 import { articles } from '../mock';
 
 const Model = new Article();
@@ -78,14 +78,20 @@ class ArticlesController {
     return Helpers.sendResponse(response, 200, 'Success', results);
   }
 
-  static addComment(request, response) {
+  static async addComment(request, response) {
+    const commentModel = new Comment();
+    const { user } = request;
+    const { comment } = request.body;
+    const { articleId } = request.params;
     const data = {
+      comment,
+      article_id: parseInt(articleId),
+      employee_id: user.id,
       createdOn: moment()
         .format('YYYY-MM-DD HH:mm:ss'),
-      articleTitle: 'Vitae tortor condimentum lacinia',
-      article: 'Vitae tortor condimentum lacinia',
-      comment: request.body.comment,
     };
+    const save = await commentModel.create(data);
+    if (save.errors) Helpers.dbError(response, save);
     return Helpers.sendResponse(response, 201, 'Comment successfully added.', data);
   }
 

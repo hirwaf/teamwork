@@ -173,8 +173,6 @@ describe('Articles endpoint tests', () => {
         response.body.should.have.property('status')
           .equal(201);
         response.body.should.have.property('message').equal('Comment successfully added.');
-        response.body.data.should.have.property('articleTitle');
-        response.body.data.should.have.property('article');
         response.body.data.should.have.property('comment').equal(comment);
       });
     done();
