@@ -1,6 +1,6 @@
 import moment from 'moment';
 import Helpers from '../helpers/Helpers';
-import { Article, Comment } from '../models';
+import { Article, Category, Comment } from '../models';
 import { articles } from '../mock';
 
 const Model = new Article();
@@ -65,17 +65,13 @@ class ArticlesController {
     return Helpers.sendResponse(response, 404, 'Article not found !');
   }
 
-  static findByTag(request, response) {
+  static async findByCategory(request, response) {
     const { tagId } = request.params;
-    const getArticles = (_article) => {
-      const gt = _article.tags.find((tag) => tag.id === parseInt(tagId));
-      if (gt !== undefined) return _article;
-    };
-    const results = articles.filter(getArticles);
-    if (results.length < 1) {
-      return Helpers.sendResponse(response, 404, 'No articles found !');
-    }
-    return Helpers.sendResponse(response, 200, 'Success', results);
+    const categoryModel = new Category(tagId);
+    const results = await categoryModel.articles();
+    if (results.errors) return Helpers.dbError(response, results);
+    if (results.count < 1) return Helpers.sendResponse(response, 404, 'No articles found !');
+    return Helpers.sendResponse(response, 200, 'Success', results.rows);
   }
 
   static async addComment(request, response) {
@@ -95,13 +91,14 @@ class ArticlesController {
     return Helpers.sendResponse(response, 201, 'Comment successfully added.', data);
   }
 
-  static findByAuthor(request, response) {
+  static async findByAuthor(request, response) {
     const { authorId } = request.params;
-    const results = articles.filter((article) => article.authorId === parseInt(authorId));
-    if (results.length <= 0) {
+    const results = await Model.getByAuthor(authorId);
+    if (results.errors) return Helpers.dbError(response, results);
+    if (results.count <= 0) {
       return Helpers.sendResponse(response, 404, 'No articles found !', []);
     }
-    return Helpers.sendResponse(response, 200, 'Success', results);
+    return Helpers.sendResponse(response, 200, 'Success', results.rows);
   }
 }
 

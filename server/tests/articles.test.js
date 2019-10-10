@@ -98,7 +98,6 @@ describe('Articles endpoint tests', () => {
       .get(`/api/v2/articles/${articleID}`)
       .set('token', token)
       .end((request, response) => {
-        console.log(JSON.stringify(response));
         response.body.should.have.property('status')
           .equal(200);
         response.body.should.have.property('message')
@@ -164,7 +163,7 @@ describe('Articles endpoint tests', () => {
 
   it('should add a comment', (done) => {
     const comment = 'this is what i used to say to people and didn\'t believe me !!';
-    const articleId = 4;
+    const articleId = 1;
     chai.request(server)
       .post(`/api/v2/articles/${articleId}/comments`)
       .set('token', token)
@@ -238,58 +237,58 @@ describe('Articles endpoint tests', () => {
     done();
   });
 
-  // it('should not found article, wrong tag', () => {
-  //   const tagId = 100;
-  //   chai.request(server)
-  //     .get(`/api/v2/feeds/${tagId}/tags`)
-  //     .set('token', token)
-  //     .set('Accept', 'application/json')
-  //     .end((request, response) => {
-  //       response.body.should.have.property('status')
-  //         .equal(404);
-  //       response.body.should.have.property('message')
-  //         .equal('No articles found !');
-  //     });
-  // });
+  it('should not found article, wrong tag', () => {
+    const tagId = 100;
+    chai.request(server)
+      .get(`/api/v2/feeds/${tagId}/tags`)
+      .set('token', token)
+      .set('Accept', 'application/json')
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(404);
+        response.body.should.have.property('message')
+          .equal('No articles found !');
+      });
+  });
 
-  // it('should found articles by tag', () => {
-  //   const tagId = 1;
-  //   chai.request(server)
-  //     .get(`/api/v2/feeds/${tagId}/tags`)
-  //     .set('token', token)
-  //     .end((request, response) => {
-  //       response.body.should.have.property('status')
-  //         .equal(200);
-  //       response.body.should.have.property('message')
-  //         .equal('Success');
-  //       response.body.data.should.be.an('Array');
-  //     });
-  // });
+  it('should found articles by tag', () => {
+    const tagId = 1;
+    chai.request(server)
+      .get(`/api/v2/feeds/${tagId}/tags`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(200);
+        response.body.should.have.property('message')
+          .equal('Success');
+        response.body.data.should.be.an('Array');
+      });
+  });
 
-  // it('should not found article by author', () => {
-  //   const authorId = 89;
-  //   chai.request(server)
-  //     .get(`/api/v2/author/articles/${authorId}`)
-  //     .set('token', token)
-  //     .end((request, response) => {
-  //       response.body.should.have.property('status')
-  //         .equal(404);
-  //       response.body.should.have.property('message')
-  //         .equal('No articles found !');
-  //     });
-  // });
+  it('should not found article by author', () => {
+    const authorId = 0;
+    chai.request(server)
+      .get(`/api/v2/author/articles/${authorId}`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(404);
+        response.body.should.have.property('message')
+          .equal('No articles found !');
+      });
+  });
 
-  // it('should found articles by author', () => {
-  //   const authorId = 1;
-  //   chai.request(server)
-  //     .get(`/api/v2/author/articles/${authorId}`)
-  //     .set('token', token)
-  //     .end((request, response) => {
-  //       response.body.should.have.property('status')
-  //         .equal(200);
-  //       response.body.should.have.property('message')
-  //         .equal('Success');
-  //       response.body.data.should.be.an('Array');
-  //     });
-  // });
+  it('should found articles by author', () => {
+    const authorId = 1;
+    chai.request(server)
+      .get(`/api/v2/author/articles/${authorId}`)
+      .set('token', token)
+      .end((request, response) => {
+        response.body.should.have.property('status')
+          .equal(200);
+        response.body.should.have.property('message')
+          .equal('Success');
+        response.body.data.should.be.an('Array');
+      });
+  });
 });

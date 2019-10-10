@@ -5,6 +5,7 @@ const articles = [
     id: 5,
     createdOn: moment()
       .format('YYYY-MM-DD HH:mm:ss'),
+    category_id: 1,
     title: 'Maecenas volutpat blandit aliquam',
     image: 'https://source.unsplash.com/collection/2186949',
     authorId: 1,
@@ -23,6 +24,7 @@ const articles = [
     id: 4,
     createdOn: moment()
       .format('YYYY-MM-DD HH:mm:ss'),
+    category_id: 1,
     title: 'Vitae tortor condimentum lacinia',
     image: 'https://source.unsplash.com/collection/2186949',
     authorId: 1,
