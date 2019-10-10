@@ -88,12 +88,13 @@ class Database {
     } : query;
   }
 
-  async delete(column, value) {
-    if (column && value) {
-      const sql = `DELETE FROM ${this.table} WHERE ${column}=$1`;
-      return this.queryBuilder(sql, [value]);
+  async delete(where) {
+    if (where) {
+      const conditions = this.prepareObject(where, ' AND ');
+      const sql = `DELETE FROM ${this.table} WHERE ${conditions}`;
+      return this.queryBuilder(sql);
     }
-    return { error: 'provide column & value' };
+    return { error: 'provide condition' };
   }
 
   async update(data, where) {

@@ -19,8 +19,8 @@ describe('Create user account endpoint', () => {
       .end((request, response) => {
         response.body.should.have.property('status')
           .equal(422);
-        done();
       });
+    done();
   });
 
   it('should return 201 http status', (done) => {
@@ -36,8 +36,8 @@ describe('Create user account endpoint', () => {
         response.body.should.have.property('data');
         response.body.data.should.be.an('Object');
         response.body.data.should.have.property('token');
-        done();
       });
+    done();
   });
 
   it('should return 409 http status', (done) => {
@@ -50,7 +50,7 @@ describe('Create user account endpoint', () => {
           .equal(409);
         response.body.should.have.property('message')
           .equal('Email already exists !');
-        done();
       });
+    done();
   });
 });
