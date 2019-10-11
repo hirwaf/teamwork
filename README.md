@@ -10,9 +10,12 @@ Teamwork is an internal social network for organizations’ employees. The goal 
 - You need to have `git`, `NodeJS` and `nmp` installed on your local environment.
 - Clone the application with `git clone` command.
 - `npm install` to install all the dependencies in local environment.
+- `cp .env.example .env` to have env setup
+- Add values in `.env` file
 
 # Getting Started
 Starting application run the following npm scripts
+* `npm run migrate` for migrating tables.
 * `npm start` for starting the server.
 
 # Testing
